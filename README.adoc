@@ -1,0 +1,31 @@
+= g3k: Generate Good-looking GPG Keys
+
+Yet another vanity key generator.
+
+Usage:
+
+----
+git clone https://github.com/bnoctis/g3k
+cd g3k
+cargo build --release
+target/release/g3k --help
+----
+
+Performance on an M1 Pro:
+
+----
+❯ time target/release/g3k 233333
+Looking for suffix "233333", with uid "G3K", 8 threads, max backflow 2592000 seconds
+Found one after 11044392 iterations
+Fingerprint: 87fadb884676299f9fcab3a9faf96c4109233333
+Written to 87fadb884676299f9fcab3a9faf96c4109233333.key
+
+________________________________________________________
+Executed in   25.67 secs    fish           external
+   usr time  182.18 secs    0.12 millis  182.18 secs
+   sys time    0.72 secs    1.46 millis    0.72 secs
+----
+
+approx. 430,000 iterations per second.
+
+BSD 3-clause (c) Blair Noctis
