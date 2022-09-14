@@ -13,7 +13,7 @@ use {
 	},
 	argh::FromArgs,
 	hex::ToHex,
-	num_cpus::get_physical,
+	num_cpus::get,
 	anyhow::{Context, Result},
 };
 
@@ -22,7 +22,7 @@ use {
 /// Generate Good-looking GPG Keys
 struct CliArgs {
 	/// number of threads to use, defaults to number of physical CPU cores
-	#[argh(option, default = "get_physical()")]
+	#[argh(option, default = "get()")]
 	threads: usize,
 	/// max backflow of one iteration, in seconds, defaults to 30 days equivalent
 	#[argh(option, default = "86400 * 30")]
