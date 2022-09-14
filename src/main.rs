@@ -21,7 +21,7 @@ use {
 #[derive(FromArgs)]
 /// Generate Good-looking GPG Keys
 struct CliArgs {
-	/// number of threads to use, defaults to number of physical CPU cores
+	/// number of threads to use, defaults to number of logical CPU cores
 	#[argh(option, default = "get()")]
 	threads: usize,
 	/// max backflow of one iteration, in seconds, defaults to 30 days equivalent
