@@ -7,11 +7,11 @@ edition = '2021'
 
 [dependencies]
 anyhow = '1.0'
-argh = "0.1"
+argh = '0.1'
 chrono = '0.4'
 crossbeam-channel = '0.5'
-hex = "0.4.3"
-num_cpus = '1.13'
-pgp = '0.8'
+hex = '0.4'
+num_cpus = '1.16'
+pgp = '0.13'
 
 [features]

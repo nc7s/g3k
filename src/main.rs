@@ -54,7 +54,7 @@ impl Builder {
 		let mut pgp_builder = SecretKeyParamsBuilder::default();
 		pgp_builder
 			.key_type(KeyType::EdDSA)
-			.can_create_certificates(true)
+			.can_certify(true)
 			.can_sign(true)
 			.primary_user_id(uid.into());
 		Self {
@@ -77,7 +77,7 @@ impl Builder {
 
 	/// "Flow" back creation time for one second. This is faster than generating a whole new key.
 	fn backflow(&mut self) {
-		self.ct = self.ct - Duration::seconds(1);
+		self.ct -= Duration::seconds(1);
 	}
 
 	fn fingerprint(&self) -> Result<String> {
@@ -90,7 +90,7 @@ impl Builder {
 	fn armored(&self) -> Result<String> {
 		self.k.as_ref().unwrap().clone()
 			.sign(String::new)?
-			.to_armored_string(None).context("armoring failed")
+			.to_armored_string(Default::default()).context("armoring failed")
 	}
 }
 
@@ -109,7 +109,7 @@ fn main() -> Result<()> {
 			loop {
 				let mut builder = Builder::new(&args.uid);
 				let mut backflow: usize = 0;
-				while backflow < args.max_backflow {
+				while backflow <= args.max_backflow {
 					builder.backflow();
 					builder.gen()?;
 					let fp = builder.fingerprint()?;
