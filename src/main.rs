@@ -132,6 +132,11 @@ fn main() -> Result<()> {
 			format!("{}.key", result.fingerprint()?)
 		} else { args.save_path };
 		std::fs::write(&save_path, result.armored()?)?;
+		#[cfg(target_family = "unix")]
+		{
+			use std::{fs::Permissions, os::unix::fs::PermissionsExt};
+			std::fs::set_permissions(&save_path, Permissions::from_mode(0o600))?;
+		}
 		println!("Written to {}", &save_path);
 	}
 	Ok(())
