@@ -14,4 +14,6 @@ hex = '0.4'
 num_cpus = '1.16'
 pgp = '0.13'
 
-[features]
+[profile.release]
+opt-level = 3
+lto = true
