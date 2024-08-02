@@ -49,8 +49,8 @@ struct Builder {
 }
 
 impl Builder {
-	/// Create a builder. Hard coded to Cv25519, may provide options later.
-	fn new (uid: &str) -> Self {
+	/// Create a builder. Hard coded to Ed25519 Cert+Sign.
+	fn new(uid: &str) -> Self {
 		let mut pgp_builder = SecretKeyParamsBuilder::default();
 		pgp_builder
 			.key_type(KeyType::EdDSA)
